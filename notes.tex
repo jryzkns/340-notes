@@ -6,10 +6,6 @@
 \usepackage{titling}
 \setlength{\droptitle}{-0.75in}
 
-\title{MATH 340 review notes}
-\author{jryzkns}
-\date{}
-
 \setlength{\parindent}{0cm}
 
 \usepackage{enumitem}
@@ -25,11 +21,17 @@
 \usepackage{subfigure}
 \usepackage{multicol}
 
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+
 \begin{document}
 
-\maketitle
-
 \begin{multicols*}{2}
+
+\section*{MATH340 Review Notes}
+
+By Jack `jryzkns' Zhou
 
 \section{Axiomatic Approach to $\mathbb{N}$}
 
@@ -216,8 +218,196 @@ This algorithm is guaranteed to terminate as each of the $r_i$ up to terminating
 
 % TODO: talk about how to recover coefficients x, y in ax + by
 
-% CONTINUE: Sept 18_1
+\section{Factoring of Integers}
+
+\textbf{Definition}:
+
+An integer $p \neq \pm 1$ is said to be \textit{irreducible} if its only divisors are itself and 1 or -1.
+
+\textbf{Definition}:
+
+An integer $p \neq 0, \pm 1$ is said to be \textit{prime} if for some $a, b \in \mathbb{Z}$, $p|ab$ implies $p|a$ or $p|b$.
+
+\textbf{Theorem}:
+
+If $n \in \mathbb{Z}\setminus\{0,1,-1\}$, $n$ is a product of irreducible integers.
+
+\textbf{Proof}:
+
+We will proceed by strong induction. The base case $n=2$ is irreducible. In the general case, suppose $n > 2$ and the theorem is true for all $i \in [2, n]$. If $n$ is irreducible, then we are done. Otherwise, $n = ab$ for some $a, b \in [2, n]$, in which case $2 \geq a, b < n$ and $a, b$ are products of primes. A product of products of primes is still a product of primes.
+
+\section{Euclid's Lemma}
+
+\textbf{Lemma}:
+
+An integer $p$ is prime if and only if $p$ is irreducible.
+
+\textbf{Proof}:
+
+$(\Rightarrow)$: Let $p$ be prime. To show that $p$ is irreducible, suppose $p = ab$ for some $a, b \in \mathbb{Z}$, WTS $a$ or $b$ is $\pm 1$. As $p = ab$, we know that $p|a$ or $p|b$. WLOG, suppose $p|a$. This means that $a = pd$ for some $d \in \mathbb{Z}$. So, $p = ab = (pd)b$. Suppose we divide $p = (pd)b$ by $p$, we get $1 = db$. Thereore, $d, b = \pm 1$; $p$ is irreducible.
+
+$(\Leftarrow)$: Let $p$ be irreducible. To show that $p$ is prime, suppose $p|ab$ for some $a, b \in \mathbb{Z}$ and show $p | a$ or $p | b$. As $p$ is irreducible, $\gcd(p, a)$ is either $1$ or $p$. If $\gcd(p, a) = p$, then $p|a$ and we are done. Otherwise, if $\gcd(p, a) = 1$, then by Bezout's Indentity, we have $1 = px + ay$ for some $x, y \in \mathbb{Z}$. Therefore, \[b = b(px+ay) = pbx + aby\]
+
+Note that $p|ab$ is equivalent to saying $ab = pn$ for some $n \in \mathbb{Z}$, we can substitute this in:\[b = pbx + pny=p(bx+ny)\] From this we can see that $p|b=p(bx+ny)$; $p$ is prime.
+
+
+\section{Fundamental Theorem of Arithmetic}
+
+\textbf{Theorem}:
+
+Let $n \in \mathbb{Z}\setminus\{0,1,-1\}$, $n$ is a product of prime numbers. Moreover, given two prime factorizations $n = p_1 \cdots p_k = q_1 \cdots q_l$, $k=l$ and it's possible to re-enumerate $q_1,\ldots,q_l$ so that $\forall i\;\; p_i = \pm q_i$.
+
+\textbf{Proof}:
+
+We proceed by showing existence then uniqueness.
+
+\textit{Existence}: This is already proven with a previous theorem showing that if $n \in \mathbb{Z}\setminus\{0,1,-1\}$, $n$ is a product of irreducible integers.By Euclid's Lemma, we can also say that such $n$ is a product of prime integers.
+
+\textit{Uniqueness}: Suppose $n = p_1 \cdots p_k = q_1 \cdots q_l$. We proceed by induction on $k$. For the base case $k = 1$, we have $n = p_1 = q_1$. In the general case, suppose $n = p_1 \cdots p_{k+1} = q_1 \cdots q_l$. We look at $p_1$, since $p_1 |n = q_1 \cdots q_l$, then $p_1|q_i$ for some $i$. Therefore $p_1 = \pm q_i$. Suppose we let let $q_i$ swap indices with $q_1$, then we have $n = p_1 \cdots p_{k+1} = q_1q_2 \cdots q_l = p_1 q_2 \cdots q_l$. We can divide $p_1 \cdots p_{k+1} = p_1 q_2 \cdots q_l$ by $p_1$, which leaves us with $p_2 \cdots p_{k+1} = q_2 \cdots q_l$ and we can repeat this procedure to set $p_j = \pm q_i$ for all remaining $j$ factors in $p_2 \cdots p_{k+1}$.
+
+\section{Modular Arithmetic}
+
+Let $a \mathbb{Z}$ and $m \in \mathbb{Z}\setminus\{0\}$, where $m$ is commonly referred to as the \textit{modulus}, we explore some definitions:
+
+\textbf{Definition}:
+
+The \textit{residue} of $a$ modulo $m$ is the remainder of $a$ when divided by $m$.
+
+\textbf{Definition}:
+
+The \textit{congruence class} of $a$ modulo $m$ is defined as the set \[[a]_m := \{a' \in \mathbb{Z} \;|\; a \equiv a' (\mathrm{mod} \;m)\}\]
+
+We say that $a$ is a \textit{representative} of $[a]_m$. 
+
+Congruence classes under the same modulus $m$ are either equal or disjoint. If $x, x' \in [a]_m$, then $x' - x | m$.
+
+Alternatively, we can generate $[a]_m$ in the following way:\[[a]_m = \{a + km \;|\; k \in \mathbb{Z}\}\]
+
+\textbf{Definition}:
+
+The integers modulo $m$, $\mathbb{Z}/m\mathbb{Z}$, is the set of congruence classes modulo $m$.
+
+\section{Algebra and Operations on $\mathbb{Z}/m\mathbb{Z}$}
+
+\textbf{Definition}:
+
+In $\mathbb{Z}/m\mathbb{Z}$, addition is defined as \[[a]_m+[b]_m = [a+b]_m\]
+and multiplication is defined as \[[a]_m \cdot [b]_m = [ab]_m\]
+
+\textbf{Definition}:
+
+An element $x$ is said to be \textit{invertible} if there exists an element $y$ such that $[xy]_m = [1]_m$. We say $x$ and $y$ are multiplicative inverses
+
+\textbf{Definition}:
+
+An element $x$ is said to be a \textit{zero divisor} if $x \neq 0$ and there exists an element $y \neq 0$ such that $[xy]_m = [0]_m$
+
+\section{Theorems about $\mathbb{Z}/m\mathbb{Z}$}
+
+\textbf{Theorem}:
+
+An element of $\mathbb{Z}/m\mathbb{Z}$ cannot be both an invertible element and a zero divisor.
+
+\textbf{Proof}:
+
+Suppose $[a]_m$ is invertible, then there exists $[a'] \in \mathbb{Z}/m\mathbb{Z}$ such that $[a]_m[a']_m = [1]_m$. Suppose that also $[a]_m[b]_m = [0]_m$ for some $ b \in \mathbb{Z}/m\mathbb{Z}$. Suppose we multiply $[a]_m[b]_m = [0]_m$ by $[a']_m$, we have \[\begin{aligned}\relax
+[a]_m[b]_m &= [0]_m\\
+([a']_m[a]_m)[b]_m &= [a']_m[0]_m\\
+[b]_m &= [0]_m
+\end{aligned}\]
+
+Therefore, the only possible $b$ that satisfies $[a]_m[b]_m = [0]_m$ is $0$, therefore $[a]_m$ cannot be both invertible and a zero divisor.
+
+\textbf{Theorem}:
+
+In $\mathbb{Z}/m\mathbb{Z}$, multiplicative inverses are unique whenever they exist.
+
+\textbf{Proof}:
+
+Let $[a]_m \in \mathbb{Z}/m\mathbb{Z}$ be an invertible element and suppose $[a]_2$ has two inverses $b_1, b_2$: \[[a]_m[b_1]_m = [1]_m\;\;\;\;[a]_m[b_2]_m = [1]_m\] We can attempt to evaluate $[b_1]_m[a]_m[b_2]_m$:\[([b_1]_m[a]_m)[b_2]_m = [b_2]_m\;\;\;\;[b_1]_m([a]_m[b_2]_m) = [b_1]_m\]
+
+We can see that depending on the order of operations taken, we get either $b_1$ or $b_2$. but as $[b_1]_m[a]_m[b_2]_m$ is always the same value, we can conclude that $b_1 = b_2$.
+
+\textbf{Theorem}:
+
+$[a]_m$ is an invertible class $\Leftrightarrow$ $\gcd(a,m) = 1$
+
+\textbf{Proof}:
+
+$(\Rightarrow)$: If $[a]_m$ is invertible, then there exists $[b]_m \in \mathbb{Z}/m\mathbb{Z}$ such that $[a]_m[b]_m = [1]_m$. We can see that $ab = 1 + km$ for some $k \in \mathbb{Z}$. We can rearrange this to $ab + (-k)m = 1$. As the $\gcd(a,m)$ is the smallest natural number to $ax+my$, we have $ab + (-k)m = 1$ so $\gcd(a,m) = 1$.
+
+$(\Leftarrow)$: The same logic applies but in the reverse direction.
+
+\textbf{Theorem}:
+
+$[a]_m$ is a zero divisor $\Leftrightarrow$ $\gcd(a,m) > 1$
+
+\textbf{Proof}:
+
+$(\Rightarrow)$: If $[a]_m$ is a zero divisor, $[a]_m$ is not invertible (by previous theorem: an element cannot be both invertible and zero divisor). So $\gcd(a,m) \neq 1$. As $\gcd(a,m) \in \mathbb{N}$ and $\gcd(a,m) \neq 1$, $\gcd(a,m) > 1$.
+
+$(\Leftarrow)$: Suppose $\gcd(a, m) = g > 1$, let $b = m/g$. If we take the product $ab = a \cdot (m/g) = m \cdot (a/\gcd(a,m))$, we can see that $ab|m$ or $[a]_m[b]_m = [0]_m$; $[a]_m$ is a zero divisor.
+
+\textbf{Theorem}:
+
+If $[a] \in \mathbb{Z}/m\mathbb{Z}$ is invertible and $[b] \in \mathbb{Z}/m\mathbb{Z}$ is arbitrary, then the equation \[[a]_m x = [b]_m\] has exactly one solution. Namely, $x = [a]^-1_m[b]_m$.
+
+\textbf{Proof}:
+
+We can show the uniqueness of the solution by solving:\[\begin{aligned} \relax
+    [a]_m x &= [b]_m\\
+    ([a]^{-1}_m[a]_m) x &= [a]^{-1}_m[b]_m\\
+    [1]_m x &= [a]^{-1}_m[b]_m\\
+\end{aligned}\]
+
+Therefore, $x$ must be $[a]^{-1}_m[b]_m$.
+
+\section{Invertible elements in $\mathbb{Z}/m\mathbb{Z}$}
+
+\textbf{Definition}:
+
+The set of invertible elements of $\mathbb{Z}/m\mathbb{Z}$ is denoted as $(\mathbb{Z}/m\mathbb{Z})^\times$ or $(\mathbb{Z}/m\mathbb{Z})^*$: \[(\mathbb{Z}/m\mathbb{Z})^\times = \{[a]_m \in \mathbb{Z}/m\mathbb{Z}\;|\; \gcd(a,m) = 1\}\]
+
+\textbf{Definition}:
+
+The cardinality of $(\mathbb{Z}/m\mathbb{Z})^\times$ is denoted $\phi(m)$, where $\phi$ is the Euler Totient function. $\phi$ has the following properties:
+\begin{itemize}
+    \item[(1)] If $\gcd(a, b) = 1$, then $\phi(a,b) = \phi(a)\phi(b)$
+    \item[(2)] If $p$ is prime and $k \geq 1$, then $\phi(p^k) = (p-1)p^{k-1}$
+\end{itemize}
+
+We proceed to prove these properties of $\phi$:
+
+\textbf{Proof}(taken from HW3 Q2):
+
+% TODO: inject proof for In $\mathbb{Z}/mn\mathbb{Z}$ where $\gcd(m,n) = 1$, the element $[a]_{mn}$ is invertible if and only if $[a]_m$ and $[a]_n$ are invertible as well.
+(1): In $\mathbb{Z}/mn\mathbb{Z}$ where $\gcd(m,n) = 1$, the element $[a]_{mn}$ is invertible if and only if $[a]_m$ and $[a]_n$ are invertible as well. Therefore, each invertible element in $(\mathbb{Z}/mn\mathbb{Z})^\times$ correspond to a pair of elements in $(\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times$; there is a bijection betwen $(\mathbb{Z}/m\mathbb{Z})^\times$ and $(\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times$. 
+
+Therefore $\phi(mn) = \#((\mathbb{Z}/mn\mathbb{Z})^\times) = \#((\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times) = \#((\mathbb{Z}/m\mathbb{Z})^\times) \cdot \#((\mathbb{Z}/n\mathbb{Z})^\times) = \phi(m)\phi(n)$.
+
+(2): We wish to count all elements in $\mathbb{Z}/p^k\mathbb{Z}$ that are invertible. Since we are working with a prime number $p$, it would be easier to count all zero-divisors instead. Namely, only the values $p,2p,3p,...$ divide into $p^k$ since $p$ is prime. Out of a total of $p^k$ classes, every $p$\textsuperscript{th} class is a zero divisor. Therefore there are $p^{k}/p = p^{k-1}$ zero divisors. Taking this amount ($p^{k-1}$) out of the total ($p^k$), we have $\phi(p^k) = p^k - p^{k-1} = (p-1)p^{k-1}$
+
+\textbf{Theorem}:
+
+If $[a]_m \in \mathbb{Z}/m\mathbb{Z}$ is invertible, then $[a]_m^{\phi(m)} = [1]_m$. Note that this implies that $[a]_m^{\phi(m)-1} = [a]_m^{-1}$ because $[a]_m^{\phi(m)-1} [a]_m = [a]_m^{\phi(m)} = [1]_m$. In the case where $m$ is a prime number $p$, we have \textit{Fermat's Little Theorem}:
+
+If $p$ is prime and $p \nmid a$, then $[a]_p^{p-1} = [1]_p$ in $\mathbb{Z}/p\mathbb{Z}$.
+
+\textbf{Proof}:
+
+% TODO: inject proof for if [a], [b] are invertible, so is [ab]
+
+Given $(\mathbb{Z}/m\mathbb{Z})^\times$, we multiply each element by $[a]_m$. If we get $[a]_m[a_i]_m = [a]_m[a_j]_m$, then we multiply by $[a]_m^{-1}$, ensuring every element in $[a]_m \cdot(\mathbb{Z}/m\mathbb{Z})^\times$ is distinct. If two elements are invertible, their product is invertible as well. Therefore, $[a]_m \cdot(\mathbb{Z}/m\mathbb{Z})^\times$ is just $(\mathbb{Z}/m\mathbb{Z})^\times$ with rearranged elements. Now we take the product over $[a]_m \cdot(\mathbb{Z}/m\mathbb{Z})^\times$:\[\begin{aligned}
+\prod_{i \in [a]_m \cdot(\mathbb{Z}/m\mathbb{Z})^\times} i &= [a]_m ^{\#((\mathbb{Z}/m\mathbb{Z})^\times)} \prod_{i \in (\mathbb{Z}/m\mathbb{Z})^\times} i \\
+&= [a]_m ^{\phi(m)} \prod_{i \in (\mathbb{Z}/m\mathbb{Z})^\times} i\\
+&= [a]_m ^{\phi(m)} [1]_m \\
+&= [a]_m ^{\phi(m)} \\
+&= [1]_m
+\end{aligned}\]
+
+Notice that as $(\mathbb{Z}/m\mathbb{Z})^\times$ contains both invertible elements are their inverses, the product over every element in $(\mathbb{Z}/m\mathbb{Z})^\times$ would simply equal to $[1]_m$. From this we can see that $[a]_m ^{\phi(m)} = [1]_m$.
+
+% TODO: continue on sept 28 notes
 
 \end{multicols*}
-
 \end{document}
