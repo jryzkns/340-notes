@@ -45,7 +45,7 @@ By Jack `jryzkns' Zhou
 
 \section{Mathematical Induction}
 
-\textbf{Principle of Mathematical Induction}: 
+\textbf{Principle of Mathematical Induction}:
 
 Suppose $X \subseteq \mathbb{N}$ and:
 \begin{enumerate}
@@ -63,7 +63,7 @@ Suppose $X \subseteq \mathbb{N}$ satusfies the properties
 \begin{enumerate}
     \item $1 \in X$
     \item $\forall i \in [1,n] \;\; i \in X \Rightarrow n+1 \in X$
-    
+
 \end{enumerate}
 
 This variant of induction is logically equivalent to the simple form of induction, but in a proof it may be desirable to refer to more than 1 case that is taken to be true, in which case a strong induction is preferred.
@@ -95,7 +95,7 @@ The Peano Axioms imply the following properties:
 
 \textbf{Defining $\mathbb{Z}$ from $\mathbb{N}$}
 
-Suppose we want to solve an equation like $x+5 = 2$ in $\mathbb{N}$, there are no solutions, because $x = 2 -5 \notin \mathbb{N}$. Therefore, we need to invent the notion of negative numbers. 
+Suppose we want to solve an equation like $x+5 = 2$ in $\mathbb{N}$, there are no solutions, because $x = 2 -5 \notin \mathbb{N}$. Therefore, we need to invent the notion of negative numbers.
 
 To do this, we can say that $\mathbb{Z}$ is the set $\mathbb{N} \times \mathbb{N} = \{(a, b) \;|\; a, b \in \mathbb{N}\}$ with an equivalence relation $(a, b) = (a+c, b+c)$ for any $a, b, c \in \mathbb{N}$. The ordered tuple $(a, b)$ represents $a - b$. We can see that $(a + c) - (b + c) = a - b$. More concretely, consider $(5, 0) = (6, 1) = (500, 495)$ and $5 - 0 = 6 - 1 = 500-495$. A negative number $-a$ could then be represented as $(0, a)$.
 
@@ -131,7 +131,7 @@ Some Facts:
 \begin{itemize}
     \item $\forall d \in \mathbb{Z}\;\;d | 0$ but $0 \nmid a$ unless $a = 0$.
     \item If $d$ divides $a \neq 0$ then $|d| \leq |a|$. In particular, the set of divisors of a non-zero integer is finite.
-    \item $d|a \Leftrightarrow |d| \;|\; |a|$ 
+    \item $d|a \Leftrightarrow |d| \;|\; |a|$
 \end{itemize}
 
 \section {GCD in $\mathbb{Z}$}
@@ -141,7 +141,7 @@ Some Facts:
 \textbf{Lemmas}:
 \begin{itemize}
     \item $( d | a \land d | b )\rightarrow d|(a-b)$
-    \item $( d | (a-b) \land d | b )\rightarrow d|a$    
+    \item $( d | (a-b) \land d | b )\rightarrow d|a$
 \end{itemize}
 
 Note that these lemmas mean that if $d$ is a common divisor of $(a, b)$ then it is equivalent to $d$ is a common divisor of $(b, a-b)$; $\gcd(a, b) = gcd(b, a- b)$.
@@ -160,7 +160,7 @@ I &= \{ ax + by \;|\; x,y \in \mathbb{Z}\}
 
 $D$ is the set of all common divisors between $a, b$ and $I$ is the set of all integer combinations of $a, b$.
 
-From this we make claim (1): If $d \in D$ and $n \in I$, then $d | n$. In particular, if $n \neq 0$, $|d| \leq |n|$. 
+From this we make claim (1): If $d \in D$ and $n \in I$, then $d | n$. In particular, if $n \neq 0$, $|d| \leq |n|$.
 
 Since $d \in D$, we have $a = q_1d$ and $b = q_2d$ for some $q_1, q_2 \in \mathbb{Z}$. Similarly, since $n \in I$, we have $n = ax + by$ for some $x, y \in \mathbb{Z}$. We can see that $n = ax + by = q_1dx + q_2dy = d(q_1x + q_2y) \Rightarrow d | n$.
 
@@ -182,12 +182,12 @@ Finally, we make our last claim (3): $n^* = \max(D) = \gcd(a, b)$. By claim (2),
 Therefore, we have two interpretations of $\gcd(a, b)$:
 \begin{itemize}
     \item $\gcd(a, b) = \max(D)$
-    
+
     maximal element in set of common divisors
     \item $\gcd(a, b) = \min(I \cap \mathbb{N})$
-    
+
     smallest positive integer combination of $a, b$.
-    
+
 \end{itemize}
 
 \section{Euclidean Algorithm}
@@ -209,7 +209,7 @@ Given: $(a, b)$ with $a > b > 0$ and repeatedly apply division theorem on $(a, b
     \vdots \;\;\;& \vdots \\
     (r_{k-2},r_{k-1}) \;\;\;& r_{k-2} = q_kr_{k-1}+ r_k \\
     (r_{k-1}, r_k) \;\;\;& r_{k-1} = q_{k+1}r_{k}+ 0 \\
-    (r_k, 0) \;\;\;& 
+    (r_k, 0) \;\;\;&
 \end{aligned}\]
 
 The algorithm stops when we reach a point where the second value in the tuple is $0$, in which case $\gcd(a, b) = r_k$.
@@ -277,7 +277,7 @@ The \textit{residue} of $a$ modulo $m$ is the remainder of $a$ when divided by $
 
 The \textit{congruence class} of $a$ modulo $m$ is defined as the set \[[a]_m := \{a' \in \mathbb{Z} \;|\; a \equiv a' (\mathrm{mod} \;m)\}\]
 
-We say that $a$ is a \textit{representative} of $[a]_m$. 
+We say that $a$ is a \textit{representative} of $[a]_m$.
 
 Congruence classes under the same modulus $m$ are either equal or disjoint. If $x, x' \in [a]_m$, then $x' - x | m$.
 
@@ -381,7 +381,7 @@ We proceed to prove these properties of $\phi$:
 \textbf{Proof}(taken from HW3 Q2):
 
 % TODO: inject proof for In $\mathbb{Z}/mn\mathbb{Z}$ where $\gcd(m,n) = 1$, the element $[a]_{mn}$ is invertible if and only if $[a]_m$ and $[a]_n$ are invertible as well.
-(1): In $\mathbb{Z}/mn\mathbb{Z}$ where $\gcd(m,n) = 1$, the element $[a]_{mn}$ is invertible if and only if $[a]_m$ and $[a]_n$ are invertible as well. Therefore, each invertible element in $(\mathbb{Z}/mn\mathbb{Z})^\times$ correspond to a pair of elements in $(\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times$; there is a bijection betwen $(\mathbb{Z}/m\mathbb{Z})^\times$ and $(\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times$. 
+(1): In $\mathbb{Z}/mn\mathbb{Z}$ where $\gcd(m,n) = 1$, the element $[a]_{mn}$ is invertible if and only if $[a]_m$ and $[a]_n$ are invertible as well. Therefore, each invertible element in $(\mathbb{Z}/mn\mathbb{Z})^\times$ correspond to a pair of elements in $(\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times$; there is a bijection betwen $(\mathbb{Z}/m\mathbb{Z})^\times$ and $(\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times$.
 
 Therefore $\phi(mn) = \#((\mathbb{Z}/mn\mathbb{Z})^\times) = \#((\mathbb{Z}/m\mathbb{Z})^\times \times (\mathbb{Z}/n\mathbb{Z})^\times) = \#((\mathbb{Z}/m\mathbb{Z})^\times) \cdot \#((\mathbb{Z}/n\mathbb{Z})^\times) = \phi(m)\phi(n)$.
 
@@ -407,7 +407,181 @@ Given $(\mathbb{Z}/m\mathbb{Z})^\times$, we multiply each element by $[a]_m$. If
 
 Notice that as $(\mathbb{Z}/m\mathbb{Z})^\times$ contains both invertible elements are their inverses, the product over every element in $(\mathbb{Z}/m\mathbb{Z})^\times$ would simply equal to $[1]_m$. From this we can see that $[a]_m ^{\phi(m)} = [1]_m$.
 
-% TODO: continue on sept 28 notes
+\section{Polynomials}
+
+\textbf{Definition}:
+
+A polynomial is a formal (symbolic) algebraic expression. A polynomial $f$ in the variable/symbol $x$ is of the form \[f = \sum_{i \geq 0} a_i x^i\]
+
+where each $a_i$ is said to be a \textit{coefficient} of the corresponding $x^i$ term. It is critical to note that $x$ is a symbol and not an element of whatever number system $f$ is in.
+
+Addition, subtraction, and multiplication are defined in the standard way. Two polynomials are said to be equal if and only if their coefficients are the same.
+
+\textbf{Definition}:
+
+A polynomial $f$ is said to be \textit{monic} if its leading coefficient is equal to 1.
+
+\textbf{Definition}:
+
+The set of polynomials in $x$ with coefficients in a given number system $\mathbb{S}$ is denoted as $\mathbb{S}[x]$, we call this set $\mathbb{S}$ \textit{adjoin} $x$. For example, the set of all polynomials with coefficients in $\mathbb{Q}$ is denoted $\mathbb{Q}[x]$. Common polynomial number systems include $\mathbb{Q,R,Z}$.
+
+\textbf{Definition}:
+
+The \textit{degree} of a polynomial $f$, denoted by $\deg(f)$, is the largest $n$ such that $a_n \neq 0$. If $f = 0$ (zero polynomial), then by convention $\deg(f) = -\infty$
+
+\textbf{Theorem}:
+
+Let $f, g$ be polynomials over $\mathbb{Q}$, $\mathbb{R}$, or $\mathbb{Z}$, then
+
+\begin{itemize}
+    \item[(1)] $\deg(f+g) \leq \max(\deg(f), \deg(g))$
+    \item[(2)] $\deg(fg) = \deg(f) + \deg(g)$
+\end{itemize}
+
+By $(2)$, there are no zero divisors in $\mathbb{Q}[x]$, $\mathbb{R}[x]$, $\mathbb{Z}[x]$. If the coefficient number system has zero divisors (ex. $\mathbb{Z}/m\mathbb{Z}$), then (2) does not hold.
+
+\section{The Division Theorem in $\mathbb{Q}[x]$}
+
+\textbf{Theorem}:
+
+Let $f, g \in \mathbb{Q}[x]$ with $g \neq 0$. When dividing $f$ by $g$, there exists unique polynomials $q, r \in \mathbb{Q}[x]$ such that:
+\begin{itemize}
+    \item $f = gq + r$
+    \item $\deg(r) < \deg(g)$
+\end{itemize}
+
+\textbf{Proof}:
+
+\textit{Existence}: We proceed by strong induction on $\deg(f)$. 
+
+In the base case we have $\deg(f) < \deg(g)$, we take $q = 0$, $r = f$, in which case $f = gq + r = 0 + f$, and this satisfies $\deg(r) < \deg(g)$. 
+
+In the inductive step, suppose $\deg(f) \geq \deg(g)$ and existence of $q, r$ is known for all lower degrees of $f$. We can cancel off the leading term of $f$ with one step of division: Let $f$ have the leading term $a_nx^n$ and $g$ have the leading term $b_mx^m$. We can define a lower degree polynomial \[\tilde{f} := f - \left(\frac{a_n}{b_m}x^{n-m}\right) \cdot g\] Note that the coefficient $\frac{b_m}{a_n}$ is valid in $\mathbb{Q}$.
+
+By induction, the existence statement applies to $\tilde{f}$: there exists $\tilde{q}, \tilde{r}$ such that $\tilde{f} = \tilde{q}g + \tilde{r}$ and $\deg(\tilde{r}) < \deg(g)$. So, we rewrite $f$ in terms of $\tilde{f}$ and show that $q, r$ exists:\[\begin{aligned}
+    f &= \tilde{f} + \left(\frac{a_n}{b_m}x^{n-m}\right) \cdot g \\
+    f &= (\tilde{q}g + \tilde{r}) + \left(\frac{a_n}{b_m}x^{n-m}\right) \cdot g \\
+    f &= \tilde{q}g + \left(\frac{a_n}{b_m}x^{n-m}\right) \cdot g + \tilde{r} \\
+    f &= \left(\tilde{q} + \frac{a_n}{b_m}x^{n-m}\right) \cdot g + \tilde{r}
+\end{aligned}\]
+
+Letting$q = \tilde{q} + \frac{a_n}{b_m}x^{n-m}$ and $r = \tilde{r}$, we can see that we have satisfied the existence of $q, r$ for $f$.
+
+\textit{Uniqueness}: Suppose $(q_1, r_1)$ and $(q_2, r_2)$ both satisfy $f = q_ig+r_i$ and $\deg(r_i) < \deg(g)$. We have $f = q_1g+r_1 = q_2g+r_2$. Alternatively, $f/g = q_1+r_1/g = q_2+r_2/g$. We require that $\deg(q_1) = \deg(q_2)$, so $r_1/g = r_1/g$. This implies that $r_1 = r_2$. In turn, this also implies that $q_1 = q_2$.
+
+\section{Divisibilitty in Polynomials}
+
+\textbf{Definition}:
+
+Given polynomials $f, g$, we say that $f|g$ if $g = qf$ for some $q \in \mathbb{q}[x]$. This implies that $\deg(f) \leq \deg(g)$ if $g \neq 0$, which is useful for induction.
+
+\textbf{Definition}:
+
+Given polynomials $f, g$, we say that $f$ and $g$ are associates if $f|g$ and $g|f$. This means that $f = cg$ for some $c \in \mathbb{Q}$, so we can have $g = \frac{1}{c}f$.
+
+Associate elements have the same divisors, which matters in uniqueness of factorization.
+
+\textbf{Definition}:
+
+Lef $f$ be a polynomial of degree greater than 0. We say that $f$ is \textit{prime} if $f|gh$ implies $f|g$ or $f|h$.
+
+Further, we say that $f$ is \textit{irreducible} if its only divisors are associates of 1 and itself. Equivalently, $f$ cannot be factored as $f = ab$ where $1 \leq \deg(a), \deg(b)$.
+
+From this definition we can see that every polynomial of degree 1 is irreducible.
+
+\section{Evaluating Polynomials as a Function}
+
+Since the arithmetic operations on polynomials are compatible with the operations on functions, we can evaluate $f \in \mathbb{Q}[x]$ at any element $a \in \mathbb{Q}$.
+
+We can say that equality of polynomials implies equality of functions. However, the converse is not true for over all number systems.
+
+\textbf{Definition}:
+
+We say that $a \in \mathbb{Q}$ is a \textit{root} of $f$ if and only if $f(a) = 0$.
+
+\section{Root Theorem}
+
+\textbf{Theorem}:
+
+Let $f \in \mathbb{Q}[x]$, $a \in \mathbb{q}$. Then $a$ is a root of f iff $(x-a)|f$.
+
+\textbf{Proof}:
+
+$(\Rightarrow)$: By the division theorem, there exists $q, r \in \mathbb{Q}[x]$ such that $f = (x-a)q + r$ and $\deg(r) < \deg(x-a)$. Assume $a$ is a root of $f$, then $f(a) = 0 = (a - a)q(a) + r$, so $r = 0$. Therefore, $f = (x-a)q$.
+
+$(\Leftarrow)$: If $f = (x - a) g$, then $f(a) = (a - a)g(a) = 0$, so $a$ is a root.
+
+\textbf{Corollary}:
+
+A nonzero polynomial of degree $d$ in $\mathbb{Q}[x]$ has at most $d$ distinctive roots.
+
+\textbf{Proof}:
+
+Refer to notes\_sep30\_2 for full proof. The rough gist is to apply induction on a polynomial $f$ and repeatedly apply root theorem each time to reduce its degree by 1.
+
+\textbf{Corollary}:
+
+If $\deg(f) = \deg(g) = n$ and $f(a) = g(a)$ for all $n+1$ distinct values of $a$, then $f = g$.
+
+\textbf{Proof}:
+
+Refer to notes\_sep30\_2 for full proof; or look at it from the linear algebra.
+
+\textbf{Corollary}:
+
+If $f, g \in \mathbb{Q}[x]$ are equal as functions (i.e. $\forall a \in \mathbb{Q}\;\;f(a) = g(a)$), then $f=g$ in $\mathbb{Q}[x]$. Here, Equality of functions implies equality of polynomials, but only for $\mathbb{Q}[x]$.
+
+\section{Polynomial Theorems}
+
+% TODO: fit in heinsenstein's criterion somewhere
+
+\textbf{Theorem}:
+
+Given polynomials $f, g$, $\gcd(f, g)$ is a common divisor $h$ of \textbf{greatest degree}. That is if $\tilde{h}$ is any other common divisor, $\deg(h) \geq \deg(\tilde{h})$.
+
+Note that if $h$ is a gcd of $f$ and $g$, so is any associate of $h$. If we are referring to the gcd of two polynomials, we mean the unique monic associate.
+
+\textbf{Theorem}:
+
+If $h$ is a gcd of $f$ and $g$, there exist polynomials $v, w \in \mathbb{Q}[x]$ such that $h = vf + wg$. Moreover, every nonzero polynomial of the form $\tilde{v}f+\tilde{w}g$ is divisible by $h$.
+
+\textbf{Theorem}:
+
+A polynomial is \textit{prime} iff it is \textit{irreducible}.
+
+Note that this is essentially Euclid's lemma for $\mathbb{Q}[x]$.
+
+\textbf{Theorem}:
+
+Let $f \in \mathbb{Q}[x]$, $f$ is a product of prime/irreducible polynomials. Moreover, given two such factorizations, it is possible to reorder the factors so that the two factorizations match up to an associate.
+
+This is the unique factorization theorem for $\mathbb{Q}[x]$. The proof for this theorem is similar to that of the integers.
+
+\textbf{Theorem}:
+
+If $f$ factors in $\mathbb{Z}[x]$ and $\deg(f) = \deg(\overline{f})$, then $\overline{f}$ is reducible in $\mathbb{Z}/p\mathbb{Z}[x]$.
+
+The proof for this theorem is omitted but the key insight this theorem brings is that we can work with the contrapositive of this theorem: If a polynomal $\overline{f}$ is irreducible in $\mathbb{Z}/p\mathbb{Z}[x]$, then it is irreducible in $\mathbb{Z}[x]$. This resets the amount of possible elements to check for the root theorem down to $p$, rather than an infinite amount.
+
+\section{Gauss's Lemma}
+
+\textbf{Lemma}:
+
+Suppose $f$ is reducible over $\mathbb{Q}[x]$, then $f$ also factors over $\mathbb{Z}[x]$, where each factors are associates of each other.
+
+The proof is omitted for this lemma, but as a rough idea behind this proof is that an irreducible factor in $\mathbb{Q}[x]$ could be rewritten as a product between an irreducible factor in $\mathbb{Z}[x]$ and a constant. (ex. $(x-1/2) = 1/2(2x-1)$)
+
+\section{Rational Root Theorem}
+
+\textbf{Theorem}:
+
+Let $f = \sum_{i}a_ix^i \in \mathbb{Z}[x]$, suppose $f(r) = 0$ for some $r \in \mathbb{Q}$, and $r = a/b$ in lowest terms (ie. $\gcd(a,b)=1$). Then $a|a_0$ ($a$ divides the constant term of $f$) and $b|a_n$ ($b$ divides the leading coefficient of $f$).
+
+\textbf{Proof}:
+
+By the root theorem, $f = (x - \frac{a}{b})g$ for some $g \in \mathbb{Q}[x]$. By Gauss's lemma, $f = (bx - a)g'$ for some $g' \in \mathbb{Z}[x]$. We can distribute the factor to get $f = bg'x - ag'$. Therefore, the leading term of $f$ will have a factor of $b$, and similarly the constant term of $f$ will have a factor of $a$.
+
+% TODO: continue of OCT 5
 
 \end{multicols*}
 \end{document}
