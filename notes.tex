@@ -581,7 +581,142 @@ Let $f = \sum_{i}a_ix^i \in \mathbb{Z}[x]$, suppose $f(r) = 0$ for some $r \in \
 
 By the root theorem, $f = (x - \frac{a}{b})g$ for some $g \in \mathbb{Q}[x]$. By Gauss's lemma, $f = (bx - a)g'$ for some $g' \in \mathbb{Z}[x]$. We can distribute the factor to get $f = bg'x - ag'$. Therefore, the leading term of $f$ will have a factor of $b$, and similarly the constant term of $f$ will have a factor of $a$.
 
-% TODO: continue of OCT 5
+\section{Ring terminologies}
+
+\textbf{Definition}:
+
+If $X, Y$ are sets, the Cartesian product of $X$ and $Y$ is the set of ordered pairs\[X \times Y = \{(x, y) \;|\;x\in X,y\in Y\}\]
+
+\textbf{Definition}:
+
+A \textit{binary operation} on a set $S$ is a function $* : S \times S \mapsto S$. This means that $*$ takes an ordered pair $(s, t) \in S \times S$ and outputs $*(s,t) \in S$. This is usually written in infix notation $s * t$.
+
+Let $*$ be a binary operation on $S$:
+
+\begin{itemize}
+    \item $*$ is \textit{commutative} if $\forall s, t \in S$, $s * t = t * s$
+    \item $*$ is \textit{associative} if $\forall s, t, u \in S$, $(s * t) * u= s * (t * u )$ 
+    \item An element $e \in S$ is an \textit{identity element} of $*$ if $\forall s \in S$, $e*s=s*e=s$
+    \item Supose $*$ has an identity element $e$, given $s \in S$, an element $t \in S$ is an \textit{inverse} of $s$ if $s*t = t*s = e$
+\end{itemize}
+
+\section{Groups}
+
+\textbf{Definition}:
+
+A \textit{group} is an ordered pair $(G,*)$, where $G$ is a set and $*$ is a binary operation on $G$ with the following conditions:
+
+\begin{itemize}
+    \item $*$ is associative
+    \item There exists an identity element for $*$
+    \item For every $g \in G$, there exists an inverse
+\end{itemize}
+
+Note that in the context of groups, $*$ is usually called the \textit{multiplication} operator.
+
+In a group, $*$ is not required to be commutative. If $*$ happens to be commutative, then said group is an \textit{abelian} or commutative group.
+
+\textbf{Theorem}:
+
+Let $(G, *)$ be a group, then the following holds:
+
+\begin{itemize}
+    \item[(1)] The identity element of $G$ is unique
+    \item[(2)] The inverse of each element is unique
+\end{itemize}
+
+Note that (2) justifies using $g^{-1}$ to denote the inverse of an element $g \in G$.
+
+\textbf{Proof}:
+
+\begin{itemize}
+    \item[(1)] Suppose we have two identities $e, e' \in G$, then \[e = e * e' = e'\]
+    \item[(2)] Suppose we have an element $g \in G$ and let $g
+    , g'' \in G$ both be inverses of $g$. Then we have the following:\[\begin{aligned}
+        &g'*g*g''\\
+        = &(g'*g)*g''\\
+        = &(e)*g''\\
+        = &g''
+    \end{aligned}\] Now proceed in the other direction by associativity:\[\begin{aligned}
+        &g'*g*g''\\
+        = &g'*(g*g'')\\
+        = &g'*(e)\\
+        = &g'
+    \end{aligned}\] Therefore, $g' = g''$.
+\end{itemize}
+
+\textbf{Theorem}:
+
+Let $(G, *)$ be a group. 
+
+\textit{Cancellation}: Let $a,b,c \in G$. $a * b = a* c \Rightarrow b = c$.
+
+\textbf{Proof}:
+
+Let $a,b,c \in G$ and suppose $a*b = a*c$:\[\begin{aligned}
+    a*b &= a*c \\
+    a^{-1}*(a*b) &= a^{-1}*(a*c) \\
+    (a^{-1}*a)*b &= (a^{-1}*a)*c \\
+    e*b &= e*c \\
+    b &= c \\
+\end{aligned}\]
+
+\section{Rings}
+
+\textbf{Definition}:
+
+A \textit{ring} is an ordered triple $(R, +, *)$ where $R$ is a set and $+, *$ are binary operations (commonly referred to as addition and multiplication, respectively) on $S$ such that:
+
+\begin{itemize}
+    \item $(R, +)$ is an abelian group
+    \begin{itemize}
+        \item $+$ is associative
+        \item $+$ is commutative
+        \item $+$ has an identity, denoted $0$
+        \item Every $r \in R$ has an additive inverse $-r$
+    \end{itemize}
+    \item $*$ is associative
+    \item $*$ distributes over addition: For every $a, b, c \in R$, $a * (b + c) = a * b + b * c$
+\end{itemize}
+
+
+Note that for the ring $(R, +, *)$, $*$ is not required to be commutative, if it is commutative, then $(R, +, *)$ is a commutative ring.
+
+\textbf{Definition}:
+
+If $(R, +_R,*_R)$ and $(S, +_S,*_S)$ are rings, we can define $R \times S$, a \textit{direct product} on $R$ and $S$ by:
+
+\begin{itemize}
+    \item $(r, s) + (r', s') = (r +_R r', s +_S s')$
+    \item$(r, s) * (r', s') = (r *_R r', s *_S s')$
+\end{itemize}
+
+$R \times S$ is a ring as well.
+
+\textbf{Theorem}:
+
+Let $(R, +, *)$ be a ring:
+
+\begin{itemize}
+    \item[(1)] For all $r \in R$ , $0 * r = r * 0 = 0$
+    \item[(2)] For all $r, s \in R$ , $(-r)*s = r*(-s) = -(r*s)$
+    \item[(3)] For all $r \in R$, $-(-r) = r$
+\end{itemize}
+
+\textbf{Proof}:
+
+\begin{itemize}
+    \item[(1)] As $0$ is the additive inverse, we have $0 = 0 + 0$. Therefore, $0*r = (0 + 0)*r$. After distribution, we have $0*r = 0*r + 0*r$, and so $0 = 0*r$. The same argument goes for the $r * 0$ case.
+    \item[(2)] WTS $(-r)*s = -(rs)$. By definition of additive inverses, $r + (-r) = 0$. Suppose we multiply by $s$, we have $(r + (-r))*s = 0 *s = 0$.\[\begin{aligned}
+        r + (-r) &= 0\\
+        (r + (-r)) * s &= 0\\
+        r*s + (-r) * s &= 0\\
+        (-r) * s &= -(r*s)
+    \end{aligned}\]
+    \item[(3)] By uniqueness of additive inverses (of groups; recall that $(R,+)$ is an abelian group), the inverse of an inverse is the element itself.
+\end{itemize}
+
+% continue from oct 9
 
 \end{multicols*}
 \end{document}
