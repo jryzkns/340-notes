@@ -503,7 +503,7 @@ We say that $a \in \mathbb{Q}$ is a \textit{root} of $f$ if and only if $f(a) = 
 
 \textbf{Theorem}:
 
-Let $f \in \mathbb{Q}[x]$, $a \in \mathbb{q}$. Then $a$ is a root of f iff $(x-a)|f$.
+Let $f \in \mathbb{Q}[x]$, $a \in \mathbb{Q}$. Then $a$ is a root of f iff $(x-a)|f$.
 
 \textbf{Proof}:
 
@@ -716,7 +716,633 @@ Let $(R, +, *)$ be a ring:
     \item[(3)] By uniqueness of additive inverses (of groups; recall that $(R,+)$ is an abelian group), the inverse of an inverse is the element itself.
 \end{itemize}
 
-% continue from oct 9
+\section{Subrings}
+
+\textbf{Definition}:
+
+Let $R$ be a ring, a \textit{subring} of $R$ is a subset $S \subseteq R$ that is, itself, a ring under the same $(+, \cdot)$ operations as $R$.
+
+\textbf{Lemma}:
+
+Let $S$ be a subring of $R$, then
+
+\begin{itemize}
+    \item[(1)] $0_R = 0_S$ (same additive identity)
+    \item[(2)] If $r \in S$ then $(-r)_R$ = $(-r)_S$ (same inverse)
+\end{itemize}
+
+\textbf{Proof}:
+
+\begin{itemize}
+    \item[(1)] $0_S + 0_S = 0_S = 0_S + 0_R$. By additive cancellation in $R$, $0_S = 0_R$.
+    \item[(2)] Let $r \in S \subseteq R$, $r$ has an additive inverse $(-r)_S \in S$ since $S$ is a ring. By definition, this means $r + (-r)_S = 0_S$. By (1) we can see that that also $r + (-r)_S = 0_R$. By uniqueness of additive inverses, $(-r)_S = (-r)_R$.
+\end{itemize}
+
+\subsection{Subring Criterion}
+
+\textbf{Theorem}:
+
+Let $S \subseteq R$, $S$ is a subring iff:
+
+\begin{itemize}
+    \item[(1)] $0 \in S$
+    \item[(2)] $S$ is closed under addition and multiplication
+    \item[(3)] If $r \in S$, then $-r \in S$
+\end{itemize}
+
+Alternatively, we can rephrase the theorem by the following conditions:
+
+\begin{itemize}
+    \item[(a)] $S$ is closed under subtraction
+    \item[(b)] $S$ is closed under multiplication
+\end{itemize}
+
+\section{Unity}
+
+\textbf{Definition}:
+
+Let $R$ be a ring. $R$ is a ring with \textit{unity} if $R$ has a multiplicative identity denoted $1 \in R$ and called \textit{one} or \textit{unity}.
+
+This means that for all $r \in R$, $1 \cdot r = r \cdot 1 = r$.
+
+Rings with no unity is sometimes called a rng.
+
+\textbf{Lemma}:
+
+Let $R$ be a ring with unity:
+
+\begin{itemize}
+    \item The multiplicative identity is unique
+    \item For all $r \in R$, $(-1) \cdot r = -r = r \cdot (-1)$
+    \item If $R$ is not the zero ring, then $1 \neq 0$
+\end{itemize}
+
+\section{Unity and Subrings}
+
+If $S$ is a subring of $R$, it may happen that:
+
+\begin{itemize}
+    \item $R$ has unity and $S$ doesn't. 
+    \subitem ex. $2 \mathbb{Z} \subseteq \mathbb{Z}$
+    \item $R$ does not have unity, but $S$ does. 
+    \subitem ex. $\mathbb{Z} \times \{0\} \subseteq \mathbb{Z} \times 2\mathbb{Z}$
+    \item $R$ and $S$ have different unities; $1_R \neq 1_S$
+    \subitem ex. $[2]\mathbb{Z}/10\mathbb{Z} \subseteq \mathbb{Z}/10\mathbb{Z}$.
+    \subitem Note that $[2]\mathbb{Z}/10\mathbb{Z}$ is all the even elements in $\mathbb{Z}/10\mathbb{Z}$, and its unity is $[6]$.
+\end{itemize}
+
+\section{Zerodivisors and Invertibility in Rings}
+
+\textbf{Definition}:
+
+Let $R$ be a ring, an element $r \neq 0 \in R$ is a zero divisor if there exists $s \neq 0 \in R$ such that $rs = 0$ or $sr = 0$.
+
+\textbf{Definition}:
+
+Let $R$ be a ring with \textit{unity}, an element $r \in R$ is a unit or invertible if there exists $s \in R$ such that $rs = sr = 1$
+
+\textbf{Lemma}:
+
+Let $R$ be a ring with unity, and element $R$ cannot be both a zero divisor and a unit.
+
+The proof for this lemma is in similar structure to that of the same statement in $\mathbb{Z}/m\mathbb{Z}$.
+
+\section{Homomorphisms and Isomorphisms}
+
+\textbf{Definition}:
+
+A function $f: x \mapsto y$ is said to be \textit{injective} if \[\forall x,x' \in X,f(x) = f(x') \Rightarrow x = x'\]
+
+\textbf{Definition}:
+
+A function $f: x \mapsto y$ is said to be \textit{surjective} if\[\forall y\in Y,\exists x\in X, s.t. \;\; y = f(x)\]
+
+\textbf{Definition}:
+
+A function $f: x \mapsto y$ is said to be \textit{bijective} if it is both an injection and a surjection.
+
+\textbf{Definition}:
+
+Suppose $(R, +, \cdot)$ and $(S, \oplus, \odot)$ are rings. A function $f: R \mapsto S$ is a ring \textit{homomorphism} if for all $r_1,r_2 \in R$, 
+
+\begin{itemize}
+    \item $f(r_1 + r_2) = f(r_1) \oplus f(r_2)$: ($f$ preserves addition)
+    \item $f(r_1 \cdot r_2) = f(r_1) \odot f(r_2)$: ($f$ preserves multiplication)
+\end{itemize}
+
+We say that $f$ is a ring \textit{isomorphism} and write $f : R \xrightarrow{\sim} S$ if $f$ is a bijective ring homomorphism.
+
+If there exists an isomorphism $R \xrightarrow{\sim} S$, we say that $R$ and $S$ are isomorphic: $R \cong S$.
+
+\textbf{Proposition}:
+
+Let $f : R \mapsto S$ be a ring homomorphism:
+
+\begin{itemize}
+    \item $f(0) = 0$
+    \item for any $r \in R$, $f(-r) = -f(r)$
+    \item If $R$, $S$ both have unity and $f(1) = 1$, then for all units $u \in R$, $f(u)$ is a unit and $f(u)^{-1} = f(u^{-1})$
+    \item If, in addition to $f$, there is another ring homomoprhism $g: S \mapsto T$, then the composition $g \circ f : R \mapsto T$ is also a homomorphism.
+\end{itemize}
+
+\section{Integral Domains and Fields}
+
+Suppose $R$ is a commutative ring with unity with $1 \neq 0$:
+
+\textbf{Definition}:
+
+$R$ is an \textit{integral domain} if $R$ has no zero divisors.
+
+\textbf{Definition}:
+
+$R$ is a \textit{field} if every non-zero element of $R$ is a unit.
+
+As units can't be zero divisors, $R$ being a field implies it is also an integral domain. The converse is not true. In a sense, $R$ being a field is a stronger statement.
+
+\textbf{Lemmma}:
+
+An element $r \neq 0 \in R$ is not a zero divisor iff \textit{multiplicative cancellation} holds for $r$, that is:
+
+$\forall a, b \in R$, $ra = rb \Rightarrow a=b$ and $ar=br \Rightarrow a = b$.
+
+\textbf{Proof}:
+
+$(\Rightarrow)$: Suppose $r\neq0 \in R$ is not a zero divisor.
+
+to show the cancellation laws hold, suppose $a, b \in R$ and $ra=rb$. Move everything on one side to obtain $ra-rb=0$. We can write as $r(a-b)=0$ by distributivity. Since $r \neq 0$ and $r$ is not a zero divisor, $a-b = 0$. therefore, $a = b$.
+
+$(\Leftarrow)$: Suppose that the multiplicative cancellation laws hold, and given $r \neq 0 \in R$ and $s\in R$ with $rs = 0$. 
+
+WTS $s = 0$: We know that $rs = 0$, and $r \cdot 0 = 0$. 
+
+Therefore $rs = r \cdot 0$, and by cancellation $s = 0$.
+
+\textbf{Theorem}:
+
+A finite integral domain is a field.
+
+\textbf{Proof}:
+
+Suppose $R$ is a finite integral domain with elements $\{r_1,\dots, r_n\}$, note that $0,1 \in R$. 
+
+To show that $R$ is a field, let $r \neq 0 \in R$.
+
+Since $r$ is not a zero divisor, the elements $rr_1, rr_2, \dots, rr_n$ must all be distinct. This means that those elements are just elements of $R$ again in a different order.
+
+So, $rr_i = 1$ for some $i$, so $r$ is a unit.
+
+\section{Ring Characteristic}
+
+\textbf{Definition}:
+
+Let $R$ be a ring with unity, the \textit{characteristic} for $R$, $\text{char}(R)$ is the smallest $n \in \mathbb{N}$ such that $n \cdot 1 = 0$. If no such $n$ exists, then the characteristic is $0$.
+
+Similarly, $\text{char}(R)$ can also be defined as the smallest $n \in \mathbb{N}$ such that $nr = 0$ for every $r \in R$, with $n=0$ if no such $n$ exists. This definition is sometimes used when the ring in question has no unity.
+
+\textbf{Lemma}:
+
+If $R$ is an integral domain, $\text{char}(R)$ is $0$ or a prime $p \in \mathbb{Z}$.
+
+\textbf{Proof}:
+
+By contrapositive, if $\text{char}(R) = n$ where $n$ is nonzero and not prime, then $n = ab$ for some $1 < a,b < n$: $n \cdot 1 = a \cdot b = 0$, so  $R$ is not an integral domain.
+
+\textbf{Corollary}:
+
+A finite field $R$ has $\text{char}(R) = p > 0$ where $p$ is prime.
+
+\textbf{Proof}:
+
+The prime aspect is covered in the lemma above. We still proceed with a contrapositive: The characteristic can't be 0 or else the elements $1, 1+1,1+1+1,\dots$ would all be distinct, and that implies $R$ is infinite.
+
+\section{Polynomial Rings}
+
+\textbf{Definition}:
+
+The ring of polynomials with coefficients in $R$ (a communtative ring with unity) is \[R[x] = \left\{\sum_{i=0}^{n}r_ix^i\;|\; n \geq 0 \in \mathbb{Z}; \forall i, r_i \in R\right\}\]
+
+\textbf{Theorem}:
+
+$R[x]$ is a commutative ring with unity.
+
+\textbf{Theorem}:
+
+If $R$ is an integral domain, so is $R[x]$.
+
+\textbf{Proof}:
+
+In rough strokes: Suppose $f, g$ have nonzero leading terms $f_nx^n$ and $g_mx^m$, the product $fg$ will have the leading term $f_ng_mx^{n+m}$. Since $R$ is an integral domain, the product $f_ng_m \neq 0$. the same applies to any term in $fg$.
+
+\section{Polynomials over a field}
+
+Suppose $F$ is a field, $F[x]$ shares many properties that $\mathbb{Q}[x]$ has, as $\mathbb{Q}$ is a field; $\mathbb{Q}[x]$ is an instance of $F[x]$.
+
+\subsection{Division theorem for $F[x]$}
+
+\textbf{Theorem}:
+
+Let $f,g \in F[x], g \neq 0$. Then there exist unique polynomials $q, r \in F[x]$. such that $f = gq+r$ and $\deg(r) < \deg(g)$.
+
+\textbf{Proof}:
+
+The proof is the same structure as for the division theorem in $\mathbb{Q}[x]$. Given that $F$ is a field, the coefficients of $f, g$ have multiplicative inverses. Instead of the expression $f - \frac{a_n}{b_m}\cdot g$ we would instead have $f - a_n b_m^{-1} \cdot g$ instead.
+
+\subsection{Overview}
+
+The properties in $F[x]$ matches with many in $\mathbb{Q}[x]$, with the same proofs:
+
+\begin{itemize}
+    \item Bezout's Identity
+    \item Euclidean Algorithm
+    \item Euclid's Lemma
+    \item Unique Factorization
+    \item Root Theorem
+\end{itemize}
+
+\section{Irreducibility over $\mathbb{R}[x]$, $\mathbb{C}[x]$}
+
+\textbf{Definition}:
+
+A field $F$ is \textit{algebraically closed} if every non constant polynomial $f \in F[x]$ has a root in $F$.
+
+For such $F$, the only irreducible polynomials are linear. Every $f \in F[X]$ of $\deg(f) \geq 1$ splits into linear factors.
+
+\textbf{Theorem}:
+
+The Fundamental theorem of Algebra:
+
+$\mathbb{C}$ is an algebraically closed field.
+
+There is no purely algebraic proof of this theorem, and requires complex analysis.
+
+\textbf{Theorem}:
+
+The irreducible monic polynomials in $\mathbb{R}[x]$ are:
+
+\begin{itemize}
+    \item linear polynomial $x - r;\; r \in \mathbb{R}$
+    \item quadratic polynomials $x^2 + rx+s;\; r, s \in \mathbb{R}$
+    \subitem with $r^2 - 4s \leq 0$ (negative discriminant)
+\end{itemize}
+
+\textbf{Proof}:
+
+Let $f \in \mathbb{R}[x]$ with $\deg(f) \geq 1$. WTS $f$ has a linear or irreducible quadratic factor. (By induction on $\deg(f)$, this implies that all the factors of $f$ are of this form).
+
+By the Fundamental Theorem of Algebra, $f$ has a root $z \in \mathbb{C}$. In which case there are two cases:
+
+(1): If $\text{Im}(z) = 0$; $z \in \mathbb{R}$, then by the root theorem for $\mathbb{R}[x]$, $f = (x-z)g$ for some $g \in \mathbb{R}[x]$.
+
+(2): If $\text{Im}(z) \neq 0$, then $f(z) = 0 = \sum_{i=0}^{n} a_ix^i$. Suppose we apply complex conjugation $\sigma$, we have:\[\begin{aligned}
+    f(z) = 0 &= \sum_{i=0}^{n} a_iz^i\\
+    \sigma(0) = 0 &= \sigma\left(\sum_{i=0}^{n} a_iz^i\right)\\
+    &= \sum_{i=0}^{n} \sigma\left(a_iz^i\right)\\
+    &= \sum_{i=0}^{n} a_i\sigma\left(z^i\right)\\
+    &= f(\sigma(z))\\
+\end{aligned}\]
+
+Therefore, $z$ is a root to $f$ and so is $\sigma(z)$. In $\mathbb{C}[x]$, $f$ has $(x - z)$ and $(x-\sigma(z))$ as roots: \[f = (x-z)(x-\sigma(z))g;\;g\in \mathbb{C}[x]\] If $z = a+bi$, then $(x-z)(x-\sigma(z)) = x^2 -2ax + (a^2+b^2) \in \mathbb{R}[x]$, an irreducible polynomal.
+
+By uniqueness of division theorem, the quotient and remainder of $f$ when divided by $x^2 -2ax + (a^2+b^2)$ in $\mathbb{R}[x]$ are the same as in $\mathbb{C}[x]$. So, we have shown that a quadratic factor exists for $f$.
+
+\section{Ideals}
+
+\textbf{Definition}:
+
+Let $R$ be a commutative ring, an \textit{ideal} is a subset $i \subseteq R$ such that:
+
+\begin{itemize}
+    \item $0 \in I$
+    \item $r, s \in I \Rightarrow (r+s \in I \wedge -r \in I)$
+    \item $(\forall r \in I \wedge \forall s \in R) \Rightarrow rs \in I$
+\end{itemize}
+
+An ideal is usually denoted as $\langle x \rangle$ (most common), $(x)$, or $xR$, where $\langle x \rangle$ is a \textit{principal ideal} with \textit{generator} $x$:\[\langle x \rangle := \{x \cdot r \;|\; r \in R\} \subseteq R\]
+
+An ideal can have multiple generators:\[\langle a_1, \dots, a_n \rangle =\{ r_1a_1 + \dots + r_na_n \;|\; r_1,\dots,r_n \in R\}\]
+
+It is noteworthy that $1 \in I \Rightarrow I = R$.
+
+\textbf{Proposition}:
+
+Suppose $R$ is a commutative ring with unity, then the following properties hold:
+
+\begin{itemize}
+    \item Let $r, s \in R$,  $s \in \langle r \rangle$ iff $\langle s \rangle \subseteq \langle r \rangle$
+    \item Let $r \in R$, $\langle r \rangle = R$ iff $r$ is a unit
+    \item If $R$ is an integral domain and $r, s \in R$, then $\langle r \rangle = \langle s \rangle$ iff $r = s \cdot u$ for some unit $u$
+\end{itemize}
+
+\textbf{Proposition}:
+
+Let $R$ be a commutative ring and $I, J \subseteq R$ ideals.
+
+Then the sets $I \cap J$ and $I + J$ are ideals, where \[I + J = \{ x + y \;|\; x\in I, y\in J\} \subseteq R\]
+
+\section{Principal Ideal Domains}
+
+\textbf{Theorem}:
+
+In $\mathbb{Z}$, $\mathbb{Q}[x]$, $F[x]$ where $F$ is a field, every ideal is principal. Sucn rings are principal ideal domains (PID's)
+
+\textbf{Proof}:
+
+We proceed with $F[x]$. Let $I \subseteq F[x]$ be an ideal.
+
+If $I = \{0\}$, then $I = \langle 0\rangle$, which is principal.
+
+Otherwise let $f \in I$ be a nonzero element of minimal degree. Claim: $\langle f\rangle = I$
+
+$(\subseteq)$: Let $g \in \langle f \rangle$, say $g = f \cdot q$ for some $q \in F[x]$. $g \in I$ by absorption under multiplication.
+
+$(\supseteq)$: Let $g \in I$. By the division theorem we have $g = f \cdot q + r$ for some $q, r \in F[x]$ and $\deg(r) < \deg(f)$. Then $r = g - f \cdot q \in I$. As $r$ has lower degree than $f$, $r = 0$ is required. therefore, $g = f \cdot q \in \langle f\rangle$.
+
+
+\section{Quadratic Extensions of $\mathbb{Z}$}
+
+\textbf{Definition}:
+
+An integer $n \in \mathbb{Z}$ is \textit{square-free} if $n$ has no non-trivial square divisors.
+
+\textbf{Lemma}:
+
+$\mathbb{Z}[\sqrt{n}]$ is a subring of $\mathbb{C}$. If $n > 0$, then $\mathbb{Z}[\sqrt{n}] \subset \mathbb{R}$.
+
+\section{Norms \& Conjugation}
+
+\textbf{Definition}:
+
+A complex  conjugation $\sigma : \mathbb{C} \mapsto \mathbb{C}$ is a ring isomorphism \[\sigma(a+bi) = a-bi\]
+
+Using conjugation we can write down the inverse of an element in $\mathbb{C}$:\[\frac{1}{a+bi} = \frac{1}{a+bi} \cdot \frac{a-bi}{a-bi} = \frac{a-bi}{a^2 + b^2}\]
+
+Note that $(a+bi)(a-bi) = a^2 + b^2$, which is sometimes referred to as the \textit{norm} of $a+bi$. 
+
+In a structer light, let $\alpha = a + b\sqrt{n} \in \mathbb{Z}[\sqrt{n}]$. 
+
+Let the \textit{norm} of $\alpha$ be defined as \[N(\alpha) := |\alpha \cdot \sigma(\alpha)| = |a^2 - b^2n|\]
+
+\textbf{Proposition}:
+
+For all $\alpha, \beta \in \mathbb{Z}[\sqrt{n}]$, $N(\alpha\beta) = N(\alpha)N(\beta)$
+
+\textbf{Proof}:
+
+\[\begin{aligned}
+    N(\alpha\beta) &= |\alpha\beta \cdot \sigma(\alpha\beta)|\\
+    &= |\alpha\beta \cdot \sigma(\alpha)\sigma(\beta)|\\
+    &= |\alpha\sigma(\alpha)|\cdot |\beta\sigma(\beta)|\\
+    &= N(\alpha)N(\beta)
+\end{aligned}\]
+
+\subsection{Units}
+
+Suppose $\alpha = a + b\sqrt{n} \in \mathbb{Z}[\sqrt{n}]$ and $\alpha$ is a unit. Then there exists $\beta \in \mathbb{Z}[\sqrt{n}]$ such that $\alpha\beta = 1$. If we apply the norm, we would have \[N(\alpha\beta) = N(1) = 1 \cdot 1 = 1\] Therefore $N(\alpha) = a^2 - b^2n = 1$. Therefore $(a, b)$ satisfies the \textit{Diophantine equation} $a^2 - b^2n = 1$ for any integers $a, b$.
+
+\textbf{Theorem}:
+
+If $n < -1$, then the only units in $\mathbb{Z}[\sqrt{n}]$ are $\pm 1$.
+
+In reference to the Diophantine equation above, suppose $n < -1$ then we need to find $a, b$ such that $a^2 + b^2n= 1$ holds, and the only possible solutions are $(a, b) = (\pm 1, 0)$.
+
+\textbf{Theorem}:
+
+An element $\alpha \in \mathbb{Z}[\sqrt{n}]$ is a unit iff $N(\alpha) = 1$.
+
+\textbf{Theorem}:
+
+$\mathbb{Z}[\sqrt{2}]$ has infinitely many units.
+
+\textbf{Proof}:
+
+If $\alpha$ and $\beta$ are units, so is $\alpha\beta$. There $(1 + \sqrt{2}), (1 + \sqrt{2})^2, (1 + \sqrt{2})^3,\dots$ are all distinct units.
+
+\section{Factorization in $\mathbb{Z}[\sqrt{n}]$}
+
+In any integral domain, associates, irreducible, and prime elements can be defined.
+
+Factorization is complicated in non-integral domains because multiplicative cancellation does not hold. However, $\mathbb{Z}[\sqrt{n}]$ is an integral domain.
+
+\textbf{Definition}:
+
+Let $R$ be an integral domain. 
+
+$r, s \in R$ are \textit{associates} if $r = s \cdot u$ for some $u \in R$.
+
+$r \in R$ is said to be \textit{irreducible} if $r \neq 0$, and whenever $r = a\cdot b$ which $a,b \in R$, then either $a$ or $b$ is unit.
+
+\textbf{Theorem}:
+
+Let $\alpha \in \mathbb{Z}[\sqrt{n}]$. Suppose $N(\alpha)$ is a prime integer, then $\alpha$ is irreducible.
+
+\textbf{Proof}:
+
+Suppose $\alpha \in \mathbb{Z}[\sqrt{n}]$ and $N(\alpha) = p$, a prime integer.
+
+To show that $\alpha$ is irreducible, we know that $N(\alpha) > 1$ so $\alpha$ isn't a unit nor 0. Suppose $\alpha = x \cdot y$ for some $x, y \in \mathbb{Z}[\sqrt{n}]$. WTS $x$ or $y$ is unit.
+
+Since $\alpha = x \cdot y$ for some $N(\alpha) = p = N(x) \cdot N(y)$. Since $p$ is prime, then either $N(x) = 1$ or $N(y)=1$. Therefore, $x$ or $y$ is unit.
+
+\textbf{Theorem}:
+
+Every nonzero non-unit $\alpha \in \mathbb{Z}[\sqrt{n}]$ can be factored into irreducibles.
+
+\textbf{Proof}:
+
+We proceed by induction on $N(\alpha)$. If $N(\alpha) = 2$, then $\alpha$ is irreducible. Otherwise $N(\alpha)$ is prime or composite. Suppose $N(\alpha)$ is prime, then $\alpha$ is irreducible. Otherwise, $\alpha = x \cdot y$ for some $x, y \in \mathbb{Z}[\sqrt{n}]$ and $N(\alpha) = N(x) \cdot N(y)$, where $N(x), N(y) < N(\alpha)$. By stron induction $N(x), N(y)$ are irreducible, so $\alpha$ can be factored into irreducibles.
+
+\textbf{Definition}:
+
+Let $R$ be an integral domain and let $r \in R$.
+
+We say two factoriations of $r$, $r = a_1 \dots a_n$ and $r = b_1 \dots b_n$ are equivalent if $n=m$ and it's possible to renumber the $b_i$'s so that for each $i$, $a_i$ and $b_i$ are associates.
+
+\textbf{Definition}:
+
+Let $R$ be an integral domain, we say that $R$ is a \textit{Unique Factorizaton Domain} (UFD) if every nonzero nonunit element in $R$ has a unique factorization into irreducibles.
+
+\textbf{Definition}:
+
+Let $R$ be an integral domain and $r \in R$. We say that $r$ is \textit{prime} if (1) $r$ isn't unit or 0, and (2) whenever $r | ab$ with $a, b \in R$, then $r | a$ or $r | b$. Alternatively if $ab \in \langle r \rangle$, then either $a \in \langle r \rangle$ or $b \in \langle r \rangle$.
+
+\textbf{Proposition}:
+
+
+Let $R$ be an integral domain and $r \in R$. If $r \in R$ is prime, then $r$ is irreducible.
+
+\textbf{Proof}:
+
+To show $r$ is irreducible, suppose $r = xy$. WTS $x$ or $y$ is a unit. We know that $xy \in \langle r \rangle$ since $xy = r \cdot 1$. Since $r$ is prime, $x \in \langle r \rangle$ or $y \in \langle r \rangle$. 
+
+Without loss of generality $x \in \langle r \rangle$. So $x = r \cdot z$ for some $z \in R$. This means that $r = xy = rzy$. By cancellation, $r = rzy \Rightarrow 1 = zy$; $y$ is a unit.
+
+\textbf{Proposition}:
+
+Let $R$ be an integral domain and $r \in R$ a nonzero non-unit. Suppose we have two factorizations $r = p_1 \dots p_n$ and $r = q_1 \dots q_m$ for primes $p_i, q_j \in R$. Then the factorizations are equivalent.
+
+So, factorization into prime elements is guaranteed to be unique, up to equivalence. The proof for this proposition is very similar to $\mathbb{Z}$ by induction on $n$.
+
+If we knew that irreducible elements in $\mathbb{Z}[\sqrt{n}]$ were prime, then $\mathbb{Z}[\sqrt{n}]$ would be a UFD.
+
+% continue from 30
+
+\section{Factorization and Ideals}
+
+There are several properties of elements in terms of ideals:
+
+\begin{itemize}
+    \item $r$ is unit $\Leftrightarrow$ $\langle r \rangle = R$
+    \item $r | s$ $\Leftrightarrow$ $s \in \langle r \rangle$ $\Leftrightarrow$ $\langle s \rangle \subseteq \langle r \rangle$
+    \item If $R$ is an integral domain, $\langle s \rangle = \langle r \rangle$ $\Leftrightarrow$ $r, s$ are associates.
+\end{itemize}
+
+For \textit{irreducible} and \textit{prime} elements, there are similar notions in terms of ideals.
+
+\textbf{Definition}:
+
+Let $R$ be a commutative ring with unity, and let $I \subseteq R$ be an ideal. We say $I$ is a \textit{prime ideal} if: 
+
+\begin{itemize}
+    \item $I \neq R$
+    \item whenever $ab \in I$, then $a \in I$ or $b \in I$
+\end{itemize}
+
+\textbf{Theorem}:
+
+Let $R$ be an integral domain, and let $r \neq 0 \in R$.
+
+$r$ is prime $\Leftrightarrow$ $\langle r \rangle$ is a \textit{prime ideal}.
+
+\textbf{Theorem}:
+
+Let $R$ be an integral domain and let $r \in R$.
+
+$r$ is irredicible iff 
+
+\begin{itemize}
+    \item $\langle 0 \rangle \subsetneq \langle r \rangle \subsetneq R$
+    \item If $\langle r \rangle \subsetneq \langle a \rangle \subsetneq R$, either $\langle r \rangle = \langle a \rangle$ or $\langle a \rangle = R$.
+\end{itemize}
+
+$\langle r \rangle$ is said to be maximal among principal ideals in $R$. Meaning, it is not contained in any strictly larger principal ideal, except for $R$ itself.
+
+If $R$ is an PID, then any irreducible element generates a maximal ideal.
+
+
+\textbf{Theorem}:
+
+Let $R$ be a commutative ring with unity. $R$ is an integral doamin iff $\{0\}$ is a prime ideal.
+
+\textbf{Proof}:
+
+By definition, $R$ is an integral domain iff $1 \neq 0$ (so $R \neq \{0\}$) and $R$ has no zero divisors.
+
+Not having zerodivisors means: if $xy = 0$ then $x=0$ or $y = 0$. Equivalently, if $xy \in \{0\}$ then $x \in \{0\}$ or $y \in \{0\}$, by definition of a prime ideal.
+
+\textbf{Theorem}:
+
+Let $R$ be a communtative ring with unity. $\{0\}$ is a maximal ideal iff $R$ is a field.
+
+Note that this asserts that in a field, the only ideals are $\{0\}$ and $R$ itself.
+
+\textbf{Proof}:
+
+By definition, $R$ is a field iff  $1 \neq 0$ and every $r \neq 0 \in R$ is unit.
+
+$(\Rightarrow)$: Suppose $\{0\}$ is maximal. Let $r \neq 0 \in R$. Then $\{0\} \subsetneq \langle r \rangle \subseteq R$, as $\{0\}$ is maximal, $\langle r \rangle = R$. Therefore $r$ is a unit.
+
+$(\Leftarrow)$: Suppose $R$ is a field. To show $\{0\}$ is maximal, suppose $\{0\} \subseteq J \subseteq R$. WTS $\{0\} = J$ or $J = R$.
+
+Suppose $J \neq \{0\}$, there exists $r \neq 0 \in J$. Therefore $\langle r \rangle \subseteq J$. Since $R$ is a field, $r$ is a unit. Therefore $\langle r \rangle = R$, so $R = J$.
+
+\textbf{Theorem}:
+
+Maximal ideals are prime ideals.
+
+\textbf{Proof}:
+
+Suppoer R is a commutative ring with unity and $I$ is a maximal ideal. WTS $I$ is a prime ideal as well.
+
+By definition of maximal ideals, $I \neq R$.
+
+Suppose $ab \in I$ for some $a, b \in R$, WTS $a \in I$ or $b \in I$. The approach is to assume $a \notin I$, then show this implies $b \in I$.
+
+Let $J = I + \langle a \rangle$  be a sum of ideals. Note that $I subsetneq J$ since $a \in J$ but $a \notin I
+$. 
+
+Since $I$ is maximal, it follows that $J = R$. 
+
+In particular $1 \in J$, so $1 = x + ra$ with $x \in I$, $ra \in \langle a \rangle$.
+
+Suppose we multiply both sides by $b$, we have $b = xb + rab$. $x \in I \Rightarrow xb \in I$ and $ab \in I \Rightarrow rab \in I$, so $b \in I$.
+
+\section{Unique Factorization and Ideals}
+
+Suppose $R$ is an integral domain. To prove that $R$ is a UFD, we need to show that (1) every nonzero non-unit factors into irreducibles. and (2) irredicible elements are prime.
+
+(1) can be shown by induction on other integal domains. $\mathbb{Z}$ (via $|n|$), $F[x]$ for field $F$ (via $\deg(f)$), and $\mathbb{Z}[\sqrt{n}]$ (via $N(\alpha)$). Each of the examples given above have some scalar quantity that denotes "size" of sorts to perform induction upon.
+
+However, in a general integral domain, there may not always be such scalar quantity, so the inductive argument may not apply. Instead, we take an ideal-centric approach.
+
+Suppose $r \in R$ is a nonzero non unit and it can't be factored into a product of irreducibles (and isn't itself irreducible). Suppose we call such $r$ a \textit{spooky} element.
+
+Suppose $r = ab$, then $a, b$ are \textit{spooky} as well. 
+
+To factor $r$, we would keep on factoring forever and never be finished. So, we can say that $r \in \langle a \rangle$, or $\langle r \rangle \subsetneq \langle a \rangle$. 
+
+By the same logic applied to $a$, suppose $a = a_1 c$ and $a_1 = a_2 d$ and so on. we can have \[\langle r \rangle \subsetneq \langle a \rangle \subsetneq \langle a_1 \rangle \subsetneq \langle a_3 \rangle\subsetneq \dots\]
+
+Note that this chain would go on forever, if we are truly dealing with \textit{spooky} elements. However, to rule out the existence of spooky elements, it would be enough to prove that every ascending chain of principal ideals terminates. In more formal terms:
+
+\textbf{Definition}:
+
+For every chain \[\langle r \rangle \subseteq \langle a \rangle \subseteq \langle a_1 \rangle \subseteq \langle a_3 \rangle\subseteq\dots\] in $R$, there exists $k \in \mathbb{N}$ such that $\langle a_k \rangle = \langle a_{k+1} \rangle = \langle a_{k+2} \rangle = \dots$. This is called the Ascending Chain Condition on Principal ideals (ACCP).
+
+\textbf{Theorem}:
+
+If an integral domain satisfies ACCP, then every nonzero nonunit in $R$ can be factored into irreducibles.
+
+\textbf{Definition}:
+
+A commutative ring $R$ satisfying the ACCP for all ideals (more than just principal ideals) is called a \textit{Noetherian} ring.
+
+\section{PID's are UFD's}
+
+\textbf{Theorem}:
+
+Every PID is a UFD.
+
+\textbf{Lemma}:
+
+Every PID satusfies the ACCP on pricipal ideals.
+
+\textbf{Proof}:
+
+Suppose $\langle a_1 \rangle \subseteq \langle a_2 \rangle \subseteq \langle a_3 \rangle \subseteq \dots$ is an ascending chain. WTS there exists $k \geq 1$ such that $\langle a_k \rangle = \langle a_{k+1} \rangle = \langle a_{k+2} \rangle = \dots$.
+
+Let $J$ be an ideal defined as \[J = \bigcup_{n \geq 1} \langle a_n \rangle = \left\{x \in R \;|\; \forall n\;\; x \in \langle a_n \rangle \right\}\]
+
+Since $R$ is a PID, $J$ is principal, so $J = \langle x \rangle$ for some $x \in R$. Since $x \in J$, $x \in \langle a_k \rangle$ for some $k$. So, $\langle x \rangle \subseteq \langle a_k \rangle$. Finally, \[J = \langle x \rangle \subseteq \langle a_k \rangle \subseteq \langle a_{k+1} \rangle \subseteq \langle a_{k+2} \rangle \subseteq \dots \subseteq J = \langle x \rangle\]
+
+Therefore, all the containments in the chain are equalities.
+
+\textbf{Lemma}:
+
+In a PID, irredicible elements are prime, so factorizations are unique to reordering and associates.
+
+\textbf{Proof}:
+
+Let $x \in R$ be an irreducible element (nonzero non-unit). $\langle x \rangle$ is maximal among principal ideals (and $\langle x \rangle \neq R$). This means that there does not exist $\langle a \rangle$ such that $\langle x \rangle \subsetneq \langle a \rangle \subsetneq R$. Since $R$ is a PID, this simply means that $\langle x \rangle$ is a maximal ideal. Maximal ideals are prime ideals, so $\langle x \rangle$ is a prime ideal, and $x$ is a prime ideal.
+
+\textbf{Theorem}:
+
+$\mathbb{Z}[i]$, $\mathbb{Z}[\sqrt{2}]$, and $\mathbb{Z}[\sqrt{3}]$ are PIDs. Each of these rings have variants of the division theorem.
+
+\textbf{Theorem}:
+
+$\mathbb{Z}[\sqrt{199}]$ is a PID but doesn't have a Division theorem. It's unknown for exactly which $n$, $\mathbb{Z}[\sqrt{n}]$ is a PID. It's not even known whether there are infinitely many such $n$.
+
+% continue from nov9
 
 \end{multicols*}
 \end{document}
