@@ -842,7 +842,7 @@ Let $f : R \mapsto S$ be a ring homomorphism:
     \item $f(0) = 0$
     \item for any $r \in R$, $f(-r) = -f(r)$
     \item If $R$, $S$ both have unity and $f(1) = 1$, then for all units $u \in R$, $f(u)$ is a unit and $f(u)^{-1} = f(u^{-1})$
-    \item If, in addition to $f$, there is another ring homomoprhism $g: S \mapsto T$, then the composition $g \circ f : R \mapsto T$ is also a homomorphism.
+    \item If, in addition to $f$, there is another ring homomorphism $g: S \mapsto T$, then the composition $g \circ f : R \mapsto T$ is also a homomorphism.
 \end{itemize}
 
 \section{Integral Domains and Fields}
@@ -1342,7 +1342,256 @@ $\mathbb{Z}[i]$, $\mathbb{Z}[\sqrt{2}]$, and $\mathbb{Z}[\sqrt{3}]$ are PIDs. Ea
 
 $\mathbb{Z}[\sqrt{199}]$ is a PID but doesn't have a Division theorem. It's unknown for exactly which $n$, $\mathbb{Z}[\sqrt{n}]$ is a PID. It's not even known whether there are infinitely many such $n$.
 
-% continue from nov9
+\section{Pre-images and kernels}
+
+\textbf{Definition}:
+
+Suppose $\phi: R \mapsto S$ is a ring homomorphism.
+
+The inverse image, or preimage of a set $A \subseteq S$ is \[\phi^{-1}(A) = \{r \in R \;|\; \phi(r) \in A\}\]
+
+Colloquially, the preimage of $A$ is what maps to $A$ via $\phi$.
+
+If such $A$ is not in the range of $\phi$, $\phi^{-1}(A) = \varnothing$
+
+\textbf{Definition}:
+
+The \textit{kernel} of $\phi: R \mapsto S$ is the pre-image of zero:\[\begin{aligned}
+    \ker(\phi) &= \phi^{-1}(\{0\}) \\
+    & = \{ r \in R \;|\; \phi (r) = 0\}
+\end{aligned}\]
+
+Note that if $r, s \in \ker \phi$, then $r+s \in \ker \phi$ because $\phi(r+s) = \phi(r) + \phi(s) = 0 + 0 = 0$. In fact, the kernel is an ideal.
+
+\textbf{Theorem}:
+
+Let $\phi : R \mapsto S$ be a ring homomorphism. Let $s \in S$ and asume there exists $r^* \in R$ such that $\phi(r^*) = s$. Then \[\phi^{-1}(s) = \{r^* + a \;|\; a \in \ker \phi\}\] This is often denoted as $r^* + \ker \phi$.
+
+\textbf{Proof}:
+
+$(\subseteq)$: Let $r \in \phi^{-1}(s)$ by any pre-image of $s$. So, $\phi(r) = s$. WTS $r = r^* + k$ for some $k \in \ker \phi$. Let $a = r - r^*$. $a \in \ker \phi$.
+
+$(\supseteq)$: Let $r = r^* + a$ for some $a \in \ker \phi$. Then $\phi(r) = \phi(r^*) + \phi(a) = s + 0 = s$. So $r \in \phi^{-1}(s)$.
+
+\textbf{Theorem}:
+
+Let $\phi : R \mapsto S$ be a ring homomorphism, $\ker\phi = \{0\}$ iff $\phi$ is an injection.
+
+\section{Equivalence Relations}
+
+
+\textbf{Definition}:
+
+A relation of a set $X$ is a set $\sim \subseteq X \times X$ where $(a, b) \in \sim$ is denoted as $a \sim b$. An \textit{Equivalence Relation} satisfies the following:
+
+\begin{itemize}
+    \item (Reflexivity) $\forall x \in X$, $x \sim x$
+    \item (Symmetry) $\forall x, y \in X$, $x \sim y \Leftrightarrow y \sim x$
+    \item (Transitivity) $\forall x, y, z \in X$, $x \sim y \wedge y \sim z \Rightarrow x \sim z$
+\end{itemize}
+
+\textbf{Definition}:
+
+Let $\sim$ be an equivalence relation on a set $X$ and let $x \in X$.
+
+The \textit{Equivalence Class} of $x$ is the subset \[[x] = \{y \in X \;|\; x \sim y\} \subseteq X\] $x$ is said to be a representative of $[x]$.
+
+The set $X$ modulo $\sim$, or $X/\sim$ is the set of equivalence classes of $X$, a set of sets: \[X/\sim \;\;= \{[x] \;|\; x \in X\}\]
+
+\textbf{Theorem}:
+
+Let $\sim$ be an equivalence relation on $X$, and let $x, y \in X$. $[x]$ and $[y]$ are either disjoint or equal.
+
+\textbf{Proof}:
+
+Suppose $[x] \cap [y]$ is not empty, then there exists $z \in[x] \cap [y]$. For all $x' \in [x]$, $x' \sim x \sim z \sim y$, so $x' \in [y]$ by transitivity. Therefore $[x] \subseteq [y]$. WLOG $[y] \subseteq [x]$. Therefore $[x] = [y]$.
+
+\section{Congruence modulo Ideals}
+
+\textbf{Definition}:
+
+Let $R$ be a commutative ring and let $I \subseteq R$ be an ideal.
+
+We say $r, r' \in R$ are \textit{congruent modulo $I$} iff $r' = r+ s$ for some $s \in I$. We can equivalently say $r' - r \in I$.
+
+\textbf{Theorem}:
+
+Congruence Modulo $I$ is an equivalence relation.
+
+\textbf{Proof}:
+
+We proceed to show the properties of equivalence relations:
+
+\begin{itemize}
+    \item (Reflexivity) Every element $r \in R$ is congruent to itself as $r - r = 0 \in I$
+    \item (Symmetry) If $r' = r + s$ for some $s \in I$, then  $r = r' + (-s)$, as $I$ has additive inverses.
+    \item (Transitivity) If $r' = r+s$ and  $r'' = r' + s$ for some $s, s' \in I$, then $r'' = (r+s) + s' = r+(s + s')$ with $s+s' \in I$, as $I$ is closed under addition.
+\end{itemize}
+
+\textbf{Definition}:
+
+The equivalence class of $r \in R$ is called the \textit{coset} of $r$ modulo $I$. It is the set\[r+I := \{r + s \;|\; s \in I\}\] Notation wise we can either write $r +I$, $[r]_I$, $[r]$, or $\overline {r}$. $r$ is called a representative of the coset.
+
+We write $R/I$ to denote the set of cosets: \[R/I = \{[r]_I\;|\;r \in R\}\]
+
+Note that $[r] = [0]$ iff $r \in I$, as $r -0 \in I$. Symbolically speaking in $R/I$, all of $I$ are declared to be $0$.
+
+\section{Ring Structure on $R/I$}
+
+\textbf{Theorem}:
+
+The binary operations on $R/I$ are well-defined.
+
+Let $R$ be a commutative ring and $I \subseteq R$ an ideal. 
+
+Let $a, a', b, b' \in R$ be elements such that $[a]_I = [a']_I$ and $[b]_I = [b']_I$. Then: (1) $[a+b] = [a'+b']$ and (2) $[ab] = [a'b']$.
+
+\textbf{Proof}:
+
+By Hypothesis, $a'=a+r$ and $b' = b+s$ for some $r, s \in I$.
+
+(1): $a' + b' = (a + r) + (b + s) = (a+b) + (r+s)$. As $r + s \in I$, $[a+b] = [a'+b']$
+
+(2): $a'b' = (a+r)(b+s) = ab + (as + br + rs)$. As $(as + br + rs) \in I$, $[ab] = [a'b']$.
+
+\textbf{Theorem}:
+
+$R/I$ is a commutative ring.
+
+\textbf{Theorem}:
+
+If $R$ has unity, so does $R/I$. Unity for $R/I$ is the coset $[1]$.
+
+\textbf{Theorem}:
+
+There is a surjective ring homomorphism $\phi: R \mapsto R/I$, a natural map, where $\phi(r) = [r]$. We also have $\ker \phi = I$.
+
+\section{First Isomorphism Theorem}
+
+\textbf{Theorem}:
+
+Let $\phi : R \mapsto S$ be a surjective ring homomorphism of commutative rings, $\ker \phi \subseteq R$ be the kernel and $\mu : R \mapsto R/\ker \phi$ the natural map.
+
+Then there exists an isomorphism $\overline{\phi}: R/\ker\phi \mapsto S$ such that \[\overline{\phi} \circ \mu = \phi\] That is to say, $\forall r \in R$, $\overline{\phi}([r]) = \phi(r)$, and $R/\ker\phi \cong S$.
+
+\section{Relationship between $R/I$ and $I$}
+
+\textbf{Theorem}:
+
+Let $R$ be a commutative ring with unity, $1 \neq 0$.
+
+\begin{itemize}
+    \item Ideal $P \subseteq R$ \textit{prime} $\Leftrightarrow$ $R/P$ integral domain.
+    \item Ideal $M \subseteq R$ \textit{maximal} $\Leftrightarrow$ $R/M$ field.
+\end{itemize}
+
+\textbf{Proof}:
+
+(1): $P$ being prime means $P \neq R$ and $ab \in P \Rightarrow a \in P \vee b \in P$. Equivalently in terms of $R/P$: $R/P$ is not the zero ring  ($[1] = [0]$), and $[a][b]=[0] \Rightarrow [a]=[0] \vee [b]=[0]$. This matches the definition of integral domains.
+
+(2): $M$ being maximal means $M \neq R$ and if $M \subseteq J \subseteq R$ for any ideal $J$, $M = J$ or $J = R$. $M \neq R$ asserts that $R/M$ isn't the zero ring ($[1] \neq [0]$), which is part of the definition of a field. The maximality condition relates to every nonzero coset is unit.
+
+$(\Rightarrow)$: Suppose $M$ is maximal, WTS $R/M$ is a field. Let $\alpha \neq [0] \in R/M$, WTS $\alpha$ is unit. Let $x \in R$ be a coset representative $\alpha = [x]$. As $a\neq[0]$, $x \notin M$. Therefore $M \subsetneq M + \langle x \rangle$. $M$ is maximal, so $M + \langle x \rangle = R$, and $1 \in M + \langle x \rangle$. So $1 = m + rx$ for some $m \in M$, $r \in R$. In reduction to $R/M$, we have $[1] = [m] + [r][x] = [r][x]$. Therefore $[x]$ is a unit.
+
+$(\Leftarrow)$: Suppose $R/M$ is a field, WTS $M$ is maximal. We know that $M \neq R$ as $R/M$ is not the zero ring (a field requires $1 \neq 0$). Suppose $M \subseteq J \subseteq R$ for some ideal $J$. WTS $M=J$ or $J= R$. Suppose $M \neq J$, so there exists $x \in J \setminus M$. As $x \notin M$, $[x] \neq [0]$ in $R/M$. $[x]$ is a unit as $R/M$ is a field. Meaning, $[x][y] = [1]$ for some $[y] \in R/M$. So, $xy - 1 \in M \subseteq J$. As $xy \in J$, and $xy-1 \in J$, so $1 \in J$, so $J = R$. Therefore, $M$ is maximal.
+
+\section{Vector Spaces}
+
+\textbf{Definition}:
+
+Let $F$ be a field. A \textit{vector space over F} is a set $V$ with two operations:
+
+\begin{itemize}
+    \item Vector Addition $+ : V \times V \mapsto V$
+    \item Scalar Multiplication $\cdot : F \times V \mapsto V$
+\end{itemize}
+
+Such that $(V, +)$ is an abelian group, so vectors can be added. In terms of scalar multiplication, the following properties hold:
+
+\begin{itemize}
+    \item Distributivity: $\forall a, b \in F$ and $v, w \in V$\[\begin{aligned}
+        a \cdot ( v + w) &= a\cdot v + a \cdot w \\
+        (a +b )\cdot v &= a\cdot v + b \cdot v
+    \end{aligned}\]
+    \item $\forall a, b \in F$ and $\forall v \in V$, \[(ab)\cdot v = a \cdot (b \cdot v)\] Note that $ab$ is field multiplication whereas $b \cdot v$ is scalar multiplication.
+    \item $\forall v \in V,\;1\cdot v = v$
+\end{itemize}
+
+\textbf{Theorem}:
+
+Let $F$ be a field and let $V$ be a vector space over $F$.
+
+\begin{itemize}
+    \item $\forall v \in V,\; 0 \cdot v = \vec{0}$
+    \item $\forall r \in F$ and $\forall v \in V$, $(-1)\cdot v = r \cdot (-v) = -(r \cdot v)$
+\end{itemize}
+
+
+\textbf{Definition}:
+
+Let $F$ be a field and $V$ be a $F$-vector space: 
+
+\begin{itemize}
+    \item A set of vectors $\{v_1,v_2,v_3,\dots, v_n\} \subseteq V$ \textit{spans} or \textit{generates} $V$ if every $v \in V$ can be written as a linear combination \[v = a_1v_1 + a_2v_2 + \dots + a_nv_n\;\; \forall i\;a_i \in F\]
+    \item A set of vectors $\{v_1,v_2,v_3,\dots, v_n\} \subseteq V$ is a \textit{basis} for $V$ if every $v \in V$ can be written uniquely as a lineaar combination of the vectors in $V$.
+\end{itemize}
+
+\textbf{Theorem}:
+
+Let $F$ be a field and $V$ a vector space over $F$.
+
+\begin{itemize}
+    \item There exists a basis for $V$.
+    \item Any two bases for $V$ have the same number of elements.
+\end{itemize}
+
+Note that this means the number of elements in a basis is a well-defined property of $V$.
+
+\textbf{Definition}:
+
+Let $F$ be a field and $V$ a vector space over $F$. The dimension of $V$ over $F$, $\dim_F(V)$, is the number of elements in any basis for $V$.
+
+\section{Field Extensions}:
+
+\textbf{Definition}:
+
+If $F \subseteq E$ and $F, E$ are both fields, we say $E$ is a \textit{field extension} of $R$, and that $F$ is the base field.
+
+If $\alpha \in E$ and $\alpha$ is a root of a nonzero polynomial $f \in F[x]$, we say $\alpha$ is \textit{algebraic} over $F$. Otherwise, $\alpha$ is \textit{transcendental} over $F$. It is generally easier to show something is algebraic rather than not.
+
+\section{Kronecker's Theorem and $\frac{F[x]}{\langle g \rangle}$}
+
+\textbf{Theorem}:
+
+Let $F$ be a field, $g \in F[x]$ irreducible (and nonconstant).
+
+Then $E = \frac{F[x]}{\langle g \rangle}$ is a field.
+
+Moreover, there exists an injective homomorphism\[\phi: F \mapsto E; \;\;\ker\phi = \{0\}\] The image is a subring isomorphic to $F$, so we can view $E$ as a field extension of $F$.
+
+Effectively this theorem says we can think of $E = \frac{F[x]}{\langle g \rangle}$ as a larger field containing $F$, Effectively $F \subseteq E$.
+
+\textbf{Proof}:
+
+Since $g \in F[x]$ is irreducible, $\langle g\rangle$ is maximal among principal ideals. As $F[x]$ is a PID, $\langle g\rangle$ is maximal. Therefore $E = \frac{F[x]}{\langle g \rangle}$ is a field.
+
+Let $\phi : F \mapsto E$ be the composition $F \mapsto F[x] \mapsto E = \frac{F[x]}{\langle g \rangle}$. WTS $\ker\phi = \{0\}$. Suppose $a \in \ker \phi$, so $[a] = [0] \in E \Rightarrow a \in \langle g \rangle$. So $a = g \cdot f$ for some $f \in F[x]$. However, as $g$ is a nonconstant polynomial and $a$ is a constant, $a=g \cdot 0$, so $a = 0$. Therefore, $\text{image}(\phi) \cong F/\{0\} \cong F$.
+
+Moreover, say  $g(x) = a_nx^n + \cdot + a_1x + a_0 \in F[x]$. The element $\alpha = [x]$ in $E$ satisfies $[a_n][x]^n + \cdot + [a_1][x] + [a_0] = [g] = [0]$ in $E$. So, $a \in E$ is algebraic over $F$.
+
+\textbf{Theorem}:
+
+Let $F$ be a field and $g \in F[x]$ a polynomal of degree $N$. Every element of $\frac{F[x]}{\langle g \rangle}$ can be represented uniquely as $[a_0+a_1x+\dots+a_{N-1}x^{N-1}]$ for some $a_i \in F$. That is, every coset can be written this way, and no two of those are equal. Therefore, $\frac{F[x]}{\langle g \rangle}$ is an N-dimensional vector space over $F$, and $\{1,[x],[x^2],\dots[x^{N-1}]\}$ is a basis.
+
+\section{Classification of Finite Fields}
+
+\textbf{Theorem}:
+
+\begin{itemize}
+    \item If $F$ is any finite field, then $F$ has $p^N$ elements, for some prime $p \in \mathbb{Z}$ and some $N \geq 1 \in \mathbb{Z}$.
+    \item For each prime $p$ and each $N \geq 1$, there exists an irreducible polynomial $g \in \mathbb{Z}/p\mathbb{Z}[x]$ of degree $N$. So, $\frac{\mathbb{Z}/p\mathbb{Z}[x]}{\langle g \rangle}$ is a field with $p^N$ elements.
+    \item If $F_1, F_2$ are finite fields with the same number of elements, then $F_1$ and $F_2$ are isomorphic. That is, there is a unique finite field with $p^N$ elements, for each prime $p \in \mathbb{Z}$ and $N \geq 1 \in \mathbb{Z}$.
+\end{itemize}
 
 \end{multicols*}
 \end{document}
